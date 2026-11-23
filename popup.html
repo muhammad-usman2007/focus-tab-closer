@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Focus Tab Closer</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    width: 320px;
+    margin: 0;
+    padding: 16px;
+    font-family: system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    color: #1c1e21;
+    background: #ffffff;
+  }
+  h1 { font-size: 16px; margin: 0 0 4px; }
+  .sub { font-size: 12px; color: #5f6368; margin: 0 0 14px; line-height: 1.45; }
+  .status {
+    display: flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; margin-bottom: 10px;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; background: #c4c7cc; flex: none; }
+  .dot.on { background: #1a9e4b; }
+  .work {
+    font-size: 12px; color: #3c4043; background: #f4f6f8;
+    border: 1px solid #e3e7ec; border-radius: 8px;
+    padding: 8px 10px; margin-bottom: 12px; word-break: break-word; line-height: 1.4;
+  }
+  .work b { color: #1c1e21; }
+  button {
+    width: 100%; padding: 10px 12px; font-size: 14px; font-weight: 600;
+    border: 0; border-radius: 8px; cursor: pointer; margin-bottom: 8px;
+  }
+  .start { background: #1a9e4b; color: #fff; }
+  .start:hover { background: #168543; }
+  .stop { background: #d93025; color: #fff; }
+  .stop:hover { background: #b3261e; }
+  .save { background: #1c1e21; color: #fff; padding: 8px 12px; font-size: 13px; }
+  .save:hover { background: #000; }
+  button:disabled { opacity: .45; cursor: default; }
+  label { display: block; font-size: 12px; font-weight: 600; margin: 12px 0 4px; }
+  textarea {
+    width: 100%; min-height: 58px; padding: 8px; font-size: 12px;
+    border: 1px solid #d5dbe1; border-radius: 8px; resize: vertical;
+    font-family: inherit;
+  }
+  .hint { font-size: 11px; color: #5f6368; line-height: 1.45; margin-top: 4px; }
+  .count { font-size: 12px; color: #3c4043; margin-top: 8px; }
+  .msg { font-size: 12px; color: #1a9e4b; min-height: 16px; margin-top: 6px; }
+</style>
+</head>
+<body>
+  <h1>Focus Tab Closer</h1>
+  <p class="sub">Only your work tab stays open. Any other tab you open closes right away.</p>
+
+  <div class="status"><span class="dot" id="dot"></span><span id="statusText">Focus is off</span></div>
+  <div class="work" id="workBox" hidden>Work tab: <b id="workTitle"></b></div>
+
+  <button class="start" id="startBtn">Set this tab as my work tab and start focus</button>
+  <button class="stop" id="stopBtn" hidden>Stop focus</button>
+
+  <label for="allowlist">Allowed sites (optional, one per line)</label>
+  <textarea id="allowlist" placeholder="docs.google.com&#10;mail.google.com"></textarea>
+  <p class="hint">Tabs on these sites will not be closed. Leave empty for full strict focus. Note: links that open in a new tab will also close unless the site is listed here.</p>
+  <button class="save" id="saveBtn">Save allowed sites</button>
+
+  <div class="count" id="count"></div>
+  <div class="msg" id="msg"></div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
